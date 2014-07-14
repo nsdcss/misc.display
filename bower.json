@@ -1,0 +1,10 @@
+{
+  "name": "nsdcss-misc-display",
+  "version": "0.1.0",
+  "main": "misc.display.less",
+  "author": "Nikolaj Sokolowski",
+  "license": "MIT",
+  "dependencies": {
+    "nsdcss-core-variables": "https://github.com/nsdcss/core.variables.git"
+  }
+}
