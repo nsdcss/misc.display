@@ -1,0 +1,38 @@
+/*------------------------------------*\
+    $DISPLAY
+\*------------------------------------*/
+
+// outer loop
+.make-responsive-displays(@counter) when (@counter > 0) {
+	.make-responsive-displays((@counter - 1));    // next iteration
+	@cur-list: extract(@bp__bp-list, @counter);
+	@breakpoint-name:  extract(@cur-list, 1);
+	@breakpoint-width:  extract(@cur-list, 2);
+	@media only screen and (min-width:~"@{breakpoint-width}px") {
+		.set-display-modes(~"--@{breakpoint-name}");
+	}
+}
+
+// inner loop
+.set-display-modes(@bpClass: ~'') {
+	.@{cf__framework-prefix}display-none@{bpClass},
+	.@{cf__framework-prefix}hide@{bpClass}{
+		display: none;
+	}
+	.@{cf__framework-prefix}display-block@{bpClass},
+	.@{cf__framework-prefix}block@{bpClass}{
+		display: block;
+	}
+	.@{cf__framework-prefix}display-inline-block@{bpClass},
+	.@{cf__framework-prefix}inline-block@{bpClass}{
+		display: inline-block;
+	}
+	.@{cf__framework-prefix}display-inline@{bpClass},
+	.@{cf__framework-prefix}inline@{bpClass}{
+		display: inline;
+	}
+}
+
+// run
+.set-display-modes();
+.make-responsive-displays(length(@bp__bp-list)); // launch the loop
